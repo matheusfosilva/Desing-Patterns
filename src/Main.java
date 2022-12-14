@@ -9,9 +9,11 @@ import java.math.BigDecimal;
 public class Main {
     public static void main(String[] args) {
 
-        Orcamento orcamento = new Orcamento(new BigDecimal("500"), 6 );
+        Orcamento orcamento = new Orcamento(new BigDecimal("400"), 6 );
+        Orcamento orcamento1 = new Orcamento(new BigDecimal("1000"), 2 );
         CalculadoraDeDesconto calc = new CalculadoraDeDesconto();
 
         System.out.println( calc.calcular(orcamento));
+        System.out.println( calc.calcular(orcamento1));
     }
 }

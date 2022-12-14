@@ -10,9 +10,12 @@ public class DescontoItems extends Desconto {
         super(proximo);
     }
 
-    public BigDecimal calcular(Orcamento orcamento) {
-        if (orcamento.getQuantidadeItems() > 5)
-            return orcamento.getValor().multiply( new BigDecimal("0.05"));
-        return proximo.calcular(orcamento);
+    @Override
+    public Boolean deveAplicar(Orcamento orcamento) {
+        return orcamento.getQuantidadeItems() > 5;
+    }
+
+    public BigDecimal efetuarCalculo(Orcamento orcamento) {
+        return orcamento.getValor().multiply(new BigDecimal("0.05"));
     }
 }
