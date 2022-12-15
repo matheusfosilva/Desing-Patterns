@@ -3,17 +3,23 @@ import br.com.sdconecta.imposto.CalculadoraDeImpostos;
 import br.com.sdconecta.imposto.Icms;
 import br.com.sdconecta.imposto.Iss;
 import br.com.sdconecta.orcamento.Orcamento;
+import br.com.sdconecta.pedido.GeraPedido;
+import br.com.sdconecta.pedido.GeraPedidoHandler;
+import br.com.sdconecta.pedido.Pedido;
+import br.com.sdconecta.pedido.acao.EnviarEmail;
+import br.com.sdconecta.pedido.acao.SalvarNoBanco;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
 
-        Orcamento orcamento = new Orcamento(new BigDecimal("400"), 6 );
-        Orcamento orcamento1 = new Orcamento(new BigDecimal("1000"), 2 );
-        CalculadoraDeDesconto calc = new CalculadoraDeDesconto();
+        GeraPedido gerador = new GeraPedido("Matheus", new BigDecimal("100"), 5);
+        GeraPedidoHandler handler = new GeraPedidoHandler(Arrays.asList(new SalvarNoBanco(), new EnviarEmail()));
 
-        System.out.println( calc.calcular(orcamento));
-        System.out.println( calc.calcular(orcamento1));
+        handler.execute(gerador);
     }
 }
